@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\RoomController;
+use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 
 Route::apiResource('rooms', RoomController::class);
+Route::apiResource('students',StudentController::class);
 
 
