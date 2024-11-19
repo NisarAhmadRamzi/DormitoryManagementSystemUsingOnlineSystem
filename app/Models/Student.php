@@ -24,10 +24,10 @@ class Student extends Model
     }
 
     // Relationship with Fees (One to Many)
-    // public function fees()
-    // {
-    //     return $this->hasMany(Fee::class);
-    // }
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
 
     // Relationship with Complaints (One to Many)
     public function complaints()

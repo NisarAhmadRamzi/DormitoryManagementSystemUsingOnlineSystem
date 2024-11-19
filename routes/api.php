@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\ComplaintController;
+use App\Http\Controllers\backend\FeeController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\RoomController;
 use App\Http\Controllers\backend\StudentController;
@@ -44,5 +45,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::apiResource('rooms', RoomController::class);
 Route::apiResource('students',StudentController::class);
 Route::apiResource('complaints',ComplaintController::class);
+Route::apiResource('fees',FeeController::class);
 
 
