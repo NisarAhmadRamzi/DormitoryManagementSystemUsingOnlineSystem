@@ -23,6 +23,11 @@ class User extends Authenticatable
         return $this->role ? $this->role->name : 'No role';
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +38,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_role'
+        
     ];
 
     /**
