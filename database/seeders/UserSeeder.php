@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         // Fetch roles by name
         $adminRole = Role::where('name', 'admin')->first();
-        $secondAdminRole = Role::where('name', 'second-admin')->first();
-        $student = Role::where('name', 'student')->first();
+        // $secondAdminRole = Role::where('name', 'second-admin')->first();
+        $studentRole = Role::where('name', 'student')->first();
 
         // Creating users and assigning roles
         User::create([
@@ -33,14 +33,14 @@ class UserSeeder extends Seeder
             'name' => 'noor',
             'email' => 'noor@example.com',
             'password' => Hash::make('12345678'),
-            'user_role' => $secondAdminRole->id,
+            'user_role' => $adminRole->id,
         ]);
 
         User::create([
             'name' => 'nader',
             'email' => 'nader@example.com',
             'password' => Hash::make('12345678'),
-            'user_role' => $student->id,
+            'user_role' => $studentRole->id,
         ]);
     }
 }
