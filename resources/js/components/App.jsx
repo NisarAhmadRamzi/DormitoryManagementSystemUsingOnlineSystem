@@ -11,6 +11,7 @@ import View_Dorm from "./view-dorm/View_Dorm";
 import Member from "./member/Member";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./footer/Footer";
+import AdminPanel from "./adminPanel/AdminPanel";
 export default function App() {
     return (
         <BrowserRouter>
@@ -22,6 +23,7 @@ export default function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/view-dorm" element={<View_Dorm />} />
                 <Route path="/member" element={<Member />} />
+                <Route path="/adminPanel" element={<AdminPanel />} />
             </Routes>
             <Footer />
         </BrowserRouter>

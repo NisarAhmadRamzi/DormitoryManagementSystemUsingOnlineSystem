@@ -1,0 +1,55 @@
+.title {
+    text-align: center;
+}
+
+.cont-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .app {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f9;
+  }
+  
+  .sidebar {
+    background-color: #343a40;
+    padding-top: 20px;
+    color: #fff;
+  }
+  
+  .sidebar .nav-link {
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #495057;
+  }
+  
+  .dashboard-link {
+    font-weight: bold;
+  }
+  
+  .card {
+    margin-top: 20px;
+  }
+  
+  .admin-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    .app {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      height: auto;
+    }
+  }
+   */
