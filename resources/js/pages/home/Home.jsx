@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../components/footer/Footer";
 import "./Home.css";
 import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
 function Home() {
@@ -357,6 +358,7 @@ function Home() {
                     </div>
                 </Container>
             </section>
+            <Footer />
         </>
     );
 }

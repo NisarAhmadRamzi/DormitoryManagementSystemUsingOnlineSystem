@@ -1,17 +1,16 @@
 import React from "react";
 import "./App.css";
 import ReactDOM from "react-dom/client";
-import Admin from "./admin/Admin";
-import Home from "./home/Home";
+import Admin from "../pages/admin/Admin";
+import Home from "../pages/home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
-import About from "./about/About";
-import Contact from "./contact/Contact";
-import View_Dorm from "./view-dorm/View_Dorm";
-import Member from "./member/Member";
+import About from "../pages/about/About";
+import Contact from "../pages/contact/Contact";
+import View_Dorm from "../pages/view-dorm/View_Dorm";
+import Member from "../pages/member/Member";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./footer/Footer";
-import AdminPanel from "./adminPanel/AdminPanel";
+import AdminPanel from "../pages/adminPanel/AdminPanel";
 export default function App() {
     return (
         <BrowserRouter>
@@ -25,7 +24,6 @@ export default function App() {
                 <Route path="/member" element={<Member />} />
                 <Route path="/adminPanel" element={<AdminPanel />} />
             </Routes>
-            <Footer />
         </BrowserRouter>
     );
 }

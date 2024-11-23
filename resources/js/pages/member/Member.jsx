@@ -1,10 +1,10 @@
 // import React from "react";
-// import "./Admin.css";
-// function Admin() {
+// import "./Member";
+// function Member() {
 //     return (
 //         <div className="wrapper">
 //             <form action="#">
-//                 <h2>Admin Login Page!</h2>
+//                 <h2>Member Login Page!</h2>
 //                 <div className="input-field">
 //                     <input
 //                         type="text"
@@ -40,13 +40,13 @@
 //     );
 // }
 
-// export default Admin;
+// export default Member;
+
 import React, { useState } from "react";
-import "./Admin.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Footer from "../../components/footer/Footer";
 function Admin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -113,6 +113,7 @@ function Admin() {
                     </form>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
