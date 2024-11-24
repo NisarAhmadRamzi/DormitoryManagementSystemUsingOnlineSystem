@@ -56,7 +56,7 @@ function Admin() {
     // Updated handleLogin to accept event e
     function handleLogin(e) {
         e.preventDefault(); // Prevents the form from being submitted
-        // console.log(email, password);
+        console.log(email, password);
 
         try {
             fetch("http://127.0.0.1:8000/api/admin-login", {
@@ -68,9 +68,9 @@ function Admin() {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    if (data) {
+                    if (data.user) {
                         // Assuming a successful login will navigate
-                        // console.log(data);
+                        console.log("succed");
                         navigate("/adminPanel");
                     } else {
                         Swal.fire({
