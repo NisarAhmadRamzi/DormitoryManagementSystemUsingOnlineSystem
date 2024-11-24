@@ -1,55 +1,25 @@
-.title {
-    text-align: center;
-}
-
-.cont-title {
+/* Sidebar hover effect */
+.sidebar a {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    color: #00ff0d;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* .app {
-    display: flex;
-    height: 100vh;
-    background-color: #f4f4f9;
-  }
-  
-  .sidebar {
-    background-color: #343a40;
-    padding-top: 20px;
-    color: #fff;
-  }
-  
-  .sidebar .nav-link {
-    color: #fff;
-    padding: 10px 20px;
-  }
-  
-  .sidebar .nav-link:hover {
-    background-color: #495057;
-  }
-  
-  .dashboard-link {
-    font-weight: bold;
-  }
-  
-  .card {
-    margin-top: 20px;
-  }
-  
-  .admin-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  
-  @media (max-width: 768px) {
-    .app {
-      flex-direction: column;
-    }
-    .sidebar {
-      width: 100%;
-      height: auto;
-    }
-  }
-   */
+/* Hover effect for sidebar links */
+.sidebar a:hover {
+    background-color: #a7b1a7; /* Highlight the background on hover */
+    color: #333333; /* Change text color */
+}
+
+/* Change icon color when hovering over sidebar links */
+.sidebar a:hover svg {
+    color: #333333; /* Change icon color to dark gray */
+}
+.table tbody tr:hover {
+    background-color: #a7b1a7; /* Light green-gray color when hovered */
+    cursor: pointer; /* Show pointer cursor to indicate interactivity */
+}
