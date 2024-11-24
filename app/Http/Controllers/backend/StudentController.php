@@ -26,12 +26,19 @@ class StudentController extends Controller
     {
         // Validate incoming request data
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'dob' => 'required|date',
-            'gender' => 'required|in:Male,Female,Other',
-            'phone' => 'required|string|max:15',
-            'academic_info' => 'nullable|string',
-            'room_id' => 'required|exists:rooms,id',
+            'name' => ['required', 'string', 'max:255'], // Name is required, should be a string, max length 255
+            'f_name' => ['required', 'string', 'max:255'], // Father's name is required
+            'last_name' => ['required', 'string', 'max:255'], // Last name is required
+            'from' => ['required', 'string', 'max:255'], // Place of origin is required
+            'dob' => ['required', 'date', 'before:today'], // Date of birth should be before today
+            'id_number' => ['required', 'integer', 'digits_between:1,20'], // National ID number, must be an integer
+            'academic_info' => ['nullable', 'string'], // Academic information is optional
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'], // Phone number must be 10-15 digits
+            'registration_date' => ['required', 'date'], // Registration date is required
+            'registration_deadline' => ['required', 'date', 'after_or_equal:registration_date'], // Deadline must be on/after registration date
+            'gender' => ['required', 'in:Male,Female,Other'], // Must be Male, Female, or Other
+            'user_id' => ['required', 'exists:users,id'], // Must reference an existing user ID
+            'room_id' => ['nullable', 'exists:rooms,id'], // If provided, must reference an existing room ID
         ]);
 
         // Create a new student record
@@ -56,13 +63,20 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         // Validate incoming request data
-        $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'dob' => 'required|date',
-            'gender' => 'required|in:Male,Female,Other',
-            'phone' => 'required|string|max:15',
-            'academic_info' => 'nullable|string',
-            'room_id' => 'required|exists:rooms,id',
+        $validatedData =$request->validate([
+            'name' => ['required', 'string', 'max:255'], // Name is required, should be a string, max length 255
+            'f_name' => ['required', 'string', 'max:255'], // Father's name is required
+            'last_name' => ['required', 'string', 'max:255'], // Last name is required
+            'from' => ['required', 'string', 'max:255'], // Place of origin is required
+            'dob' => ['required', 'date', 'before:today'], // Date of birth should be before today
+            'id_number' => ['required', 'integer', 'digits_between:1,20'], // National ID number, must be an integer
+            'academic_info' => ['nullable', 'string'], // Academic information is optional
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'], // Phone number must be 10-15 digits
+            'registration_date' => ['required', 'date'], // Registration date is required
+            'registration_deadline' => ['required', 'date', 'after_or_equal:registration_date'], // Deadline must be on/after registration date
+            'gender' => ['required', 'in:Male,Female,Other'], // Must be Male, Female, or Other
+            'user_id' => ['required', 'exists:users,id'], // Must reference an existing user ID
+            'room_id' => ['nullable', 'exists:rooms,id'], // If provided, must reference an existing room ID
         ]);
 
         // Update the student record

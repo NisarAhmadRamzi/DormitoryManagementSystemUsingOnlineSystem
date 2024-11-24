@@ -12,8 +12,12 @@ class Room extends Model
     protected $fillable = ['room_number', 'type', 'capacity', 'current_occupancy', 'price', 'status' ,'floor'];
 
     // Relationship with Students (One to Many)
-    // public function students()
-    // {
-    //     return $this->hasMany(Student::class);
-    // }
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+    public function fees()
+    {
+        return $this->belongsToMany(Fee::class, 'fee_room');
+    }
 }

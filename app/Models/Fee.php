@@ -16,4 +16,9 @@ class Fee extends Model
     {
         return $this->belongsTo(Student::class);
     }
+    // Many-to-Many relationship with rooms
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class, 'fee_room');
+    }
 }
