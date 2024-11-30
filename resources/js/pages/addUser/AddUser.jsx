@@ -301,7 +301,7 @@ function AddUser() {
     };
 
     const addNewUserHandler = () => {
-        console.log("New user added!");
+        // console.log("New user added!");
 
         // Validate that the password and confirm password match
         if (userpassword !== confirmuserpassword) {
@@ -366,7 +366,7 @@ function AddUser() {
             <div
                 className="sidebar"
                 style={{
-                    width: "20%",
+                    width: "25%",
                     backgroundColor: "#333333",
                     height: "100vh",
                     color: "#00ff0d",
