@@ -12,6 +12,7 @@ import Member from "../pages/member/Member";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminPanel from "../pages/adminPanel/AdminPanel";
 import AdminItem from "../pages/adminItem/AdminItem";
+import AddUser from "../pages/addUser/AddUser";
 export default function App() {
     return (
         <BrowserRouter>
@@ -25,6 +26,7 @@ export default function App() {
                 <Route path="/member" element={<Member />} />
                 <Route path="/adminPanel" element={<AdminPanel />} />
                 <Route path="/adminItem" element={<AdminItem />} />
+                <Route path="/addUser" element={<AddUser />} />
             </Routes>
         </BrowserRouter>
     );
