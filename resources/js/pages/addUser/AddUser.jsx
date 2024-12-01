@@ -259,7 +259,7 @@ function AddUser() {
                             required
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicImage">
+                    {/* <Form.Group className="mb-3" controlId="formBasicImage">
                         <Form.Label>Profile Picture:</Form.Label>
                         <Form.Control
                             onChange={userImageHandler}
@@ -267,7 +267,7 @@ function AddUser() {
                             placeholder="Select user's profile picture!"
                             required
                         />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Button
                         variant="primary"

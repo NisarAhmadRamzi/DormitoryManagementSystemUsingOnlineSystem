@@ -141,7 +141,7 @@ function AdminPanel() {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            {/* <th>Image</th> */}
+                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -152,14 +152,14 @@ function AdminPanel() {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.user_role}</td>
-                                {/* <td>
+                                <td>
                                     <img
                                         src={user.image || "/default-image.jpg"}
                                         alt={user.name}
                                         width={50}
                                         height={50}
                                     />
-                                </td> */}
+                                </td>
                                 <td style={{ padding: "5px" }}>
                                     <button
                                         onClick={() => handleEdit(user.user_id)}
