@@ -145,6 +145,118 @@ class UserController extends Controller
 }
 
 }
+//new methods
+
+
+// public function store(Request $request)
+// {
+//     // Validate request data
+//     $fields = $request->validate([
+//         'name' => 'required|string|max:255',
+//         'email' => 'required|email|unique:users,email', // Ensure unique emails
+//         'password' => 'required|min:4',
+//         'cpassword' => 'required|same:password',
+//         'role' => 'required|string',
+//         'profile_pic' => 'nullable|image|max:2048', // Validate profile picture
+//     ]);
+
+//     try {
+//         // Create user
+//         $user = new User();
+//         $user->name = $fields['name'];
+//         $user->email = $fields['email'];
+//         $user->password = Hash::make($fields['password']);
+//         $user->user_role = $fields['role'];
+//         $user->save();
+
+//         // Handle profile picture upload
+//         $path = null;
+//         if ($request->hasFile('profile_pic')) {
+//             $file = $request->file('profile_pic');
+//             $path = $file->store('uploads', 'public');
+//         }
+
+//         // Create profile
+//         $profile = new Profile();
+//         $profile->profile_pic = $path;
+//         $profile->user_id = $user->id;
+//         $profile->save();
+
+//         // Return response
+//         return response()->json([
+//             'message' => 'User created successfully',
+//             'user' => new UserResource($user),
+//         ], 201);
+
+//     } catch (\Exception $e) {
+//         // Handle errors
+//         return response()->json([
+//             'message' => 'Failed to create user',
+//             'error' => $e->getMessage(),
+//         ], 500);
+//     }
+// }
+
+
+
+// public function update(Request $request, $id)
+// {
+//     // Validate input fields
+//     $fields = $request->validate([
+//         'name' => 'required',
+//         'email' => 'required|email',
+//         'password' => 'nullable|min:4', // Password can be nullable on update
+//         'cpassword' => 'nullable|same:password', // cpassword must match if password is updated
+//         'role' => 'required',
+//         'profile_pic' => 'nullable|image|max:2048', // Ensure profile_pic is a valid image
+//     ]);
+
+//     // Find the user
+//     $user = User::findOrFail($id);
+//     $user->name = $request->name;
+//     $user->email = $request->email;
+    
+//     // Update password only if provided
+//     if ($request->filled('password')) {
+//         $user->password = Hash::make($request->password);
+//     }
+
+//     $user->user_role = $request->role;
+//     $user->save();
+
+//     // Handle profile picture update
+//     if ($request->hasFile('profile_pic')) {
+//         $file = $request->file('profile_pic');
+
+//         // Find the existing profile
+//         $profile = Profile::where('user_id', $user->id)->first();
+
+//         if ($profile) {
+//             // Delete the old profile picture if it exists
+//             if ($profile->profile_pic && Storage::disk('public')->exists($profile->profile_pic)) {
+//                 Storage::disk('public')->delete($profile->profile_pic);
+//             }
+
+//             // Store the new profile picture
+//             $path = $file->store('uploads', 'public');
+//             $profile->profile_pic = $path;
+//             $profile->save();
+//         } else {
+//             // Create a new profile record if none exists
+//             $path = $file->store('uploads', 'public');
+//             $profile = new Profile();
+//             $profile->profile_pic = $path;
+//             $profile->user_id = $user->id;
+//             $profile->save();
+//         }
+//     }
+
+//     return response()->json([
+//         'message' => 'Profile updated successfully',
+//         'user' => new UserResource($user),
+//     ]);
+// }
+
 
 
 
