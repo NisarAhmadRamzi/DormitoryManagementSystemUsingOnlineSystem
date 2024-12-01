@@ -141,7 +141,7 @@ function AdminPanel() {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Image</th>
+                            {/* <th>Image</th> */}
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -152,14 +152,14 @@ function AdminPanel() {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.user_role}</td>
-                                <td>
+                                {/* <td>
                                     <img
                                         src={user.image || "/default-image.jpg"}
                                         alt={user.name}
                                         width={50}
                                         height={50}
                                     />
-                                </td>
+                                </td> */}
                                 <td style={{ padding: "5px" }}>
                                     <button
                                         onClick={() => handleEdit(user.user_id)}
@@ -196,8 +196,10 @@ function AdminPanel() {
     // Example handler functions for the buttons
     function handleEdit(userId) {
         console.log("Edit user with ID:", userId);
-        // Add your edit logic here (e.g., navigate to edit form)
+        // Navigate to the edit user page and pass the userId as a URL parameter
+        navigate(`/editUser/${userId}`);
     }
+
     function handleDelete(userId) {
         // Use SweetAlert for the confirmation dialog
         Swal.fire({

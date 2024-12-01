@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap"; // Import Row and Col for grid system
+import React, { useState, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
 import axios from "axios";
-import "./AddUser.css";
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "./EditUser.css";
 import {
     FaTachometerAlt,
     FaFileAlt,
@@ -10,15 +12,50 @@ import {
     FaCog,
     FaLock,
 } from "react-icons/fa";
-import Swal from "sweetalert2";
 
-function AddUser() {
+function EditUser() {
+    const { userId } = useParams(); // Get userId from the route
+    const navigate = useNavigate(); // For navigation after successful update
+
+    // State variables for user data
     const [username, setUserName] = useState("");
     const [useremail, setUserEmail] = useState("");
     const [userpassword, setUserPassword] = useState("");
     const [confirmuserpassword, setConfirmUserPassword] = useState("");
     const [userrole, setUserRole] = useState("");
-    const [userimage, setUserImage] = useState("");
+    const [userimage, setUserImage] = useState(null); // Use null if no image
+    const [loading, setLoading] = useState(true); // To show a loading state
+
+    // Fetch user data when the component mounts
+    useEffect(() => {
+        axios
+            .get(`http://127.0.0.1:8000/api/users/${userId}`)
+            .then((response) => {
+                const user = response.data.data;
+                setUserName(user.name);
+                setUserEmail(user.email);
+                setUserRole(user.user_role);
+
+                // Set the user image (or use a default if none exists)
+                if (user.profile_pic) {
+                    setUserImage(user.profile_pic);
+                } else {
+                    setUserImage("/images/default-image.jpg"); // Fallback to default image
+                }
+
+                setLoading(false); // Data fetched, set loading to false
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "There was an issue fetching user data.",
+                    icon: "error",
+                    confirmButtonText: "Close",
+                });
+                setLoading(false); // Stop loading if there's an error
+            });
+    }, [userId]); // Re-fetch data if userId changes
 
     const userNameHandler = (e) => setUserName(e.target.value);
     const userEmailHandler = (e) => setUserEmail(e.target.value);
@@ -26,22 +63,17 @@ function AddUser() {
     const confirmUserPasswordHandler = (e) =>
         setConfirmUserPassword(e.target.value);
     const userRoledHandler = (e) => setUserRole(e.target.value);
-    const userImageHandler = (e) => setUserImage(e.target.files[0]); // Handle file input
 
-    // Function to reset all form fields
     const resetForm = () => {
         setUserName("");
         setUserEmail("");
         setUserPassword("");
         setConfirmUserPassword("");
         setUserRole("");
-        setUserImage("");
     };
-
-    const addNewUserHandler = () => {
+    const updateUserHandler = () => {
         // Validate that the password and confirm password match
         if (userpassword !== confirmuserpassword) {
-            console.error("Passwords do not match");
             Swal.fire({
                 title: "Error!",
                 text: "Passwords do not match.",
@@ -52,13 +84,7 @@ function AddUser() {
         }
 
         // Validate required fields
-        if (
-            !username ||
-            !useremail ||
-            !userpassword ||
-            !confirmuserpassword ||
-            !userrole
-        ) {
+        if (!username || !useremail || !userrole) {
             Swal.fire({
                 title: "Error!",
                 text: "All fields are required.",
@@ -68,60 +94,56 @@ function AddUser() {
             return;
         }
 
-        // Create a FormData object for the file upload
-        const formData = new FormData();
-        formData.append("name", username);
-        formData.append("email", useremail);
-        formData.append("password", userpassword);
-        formData.append("cpassword", confirmuserpassword); // Fixed field name to match the backend
-        formData.append("role", userrole); // Ensure 'role' is the correct name expected by the backend
+        // Prepare data to be updated
+        const updatedData = {
+            name: username,
+            email: useremail,
+            role: userrole,
+            password: userpassword ? userpassword : undefined, // Only include password if provided
+            profile_pic:
+                userimage && userimage !== "/images/default-image.jpg"
+                    ? userimage
+                    : undefined,
+        };
 
-        if (userimage) {
-            formData.append("profile_pic", userimage);
-        }
-
-        // Post request to backend with the form data
+        // PUT request to update user data
         axios
-            .post("http://127.0.0.1:8000/api/users", formData, {
+            .put(`http://127.0.0.1:8000/api/users/${userId}`, updatedData, {
                 headers: {
-                    "Content-Type": "multipart/form-data", // Important for file uploads
+                    "Content-Type": "application/json", // Using JSON instead of FormData
                 },
             })
             .then((response) => {
-                console.log("New user added successfully:", response);
-                // Success alert
+                console.log("User updated successfully:", response);
                 Swal.fire({
                     title: "Success!",
-                    text: "New user added successfully.",
+                    text: "User updated successfully.",
                     icon: "success",
                     confirmButtonText: "Close",
                 });
-                // Reset form fields after successful submission
-                resetForm();
+                navigate("/adminPanel"); // Redirect after successful update
             })
             .catch((error) => {
                 console.error(
-                    "Error adding new user:",
+                    "Error updating user:",
                     error.response || error.message
                 );
-                // Log the full error response to understand what went wrong
-                if (error.response) {
-                    console.log("Error Response Data: ", error.response.data);
-                }
-
-                // Error alert
                 Swal.fire({
                     title: "Error!",
-                    text: "There was an issue adding the new user.",
+                    text: "There was an issue updating the user.",
                     icon: "error",
                     confirmButtonText: "Close",
                 });
             });
     };
 
+    if (loading) {
+        return <div>Loading user data...</div>; // Show loading message until data is fetched
+    }
+
     return (
         <div className="d-flex">
-            {/* Sidebar */}
+            {/* Sidebar (same as previous code) */}
             <div
                 className="sidebar"
                 style={{
@@ -205,19 +227,19 @@ function AddUser() {
 
             {/* Form Section */}
             <div className="container mt-4" style={{ width: "50%" }}>
-                <h1 className="mb-4">Add a new admin!</h1>
+                <h1 className="mb-4">Edit User</h1>
                 <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formUserName">
                         <Form.Label>User Name:</Form.Label>
                         <Form.Control
                             value={username}
                             onChange={userNameHandler}
                             type="text"
-                            placeholder="Enter new user's name!"
+                            placeholder="Enter user's name"
                             required
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formUserEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
                             value={useremail}
@@ -227,27 +249,30 @@ function AddUser() {
                             required
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password:</Form.Label>
+                    <Form.Group className="mb-3" controlId="formUserPassword">
+                        <Form.Label>
+                            Password (Leave empty to keep current password):
+                        </Form.Label>
                         <Form.Control
                             value={userpassword}
                             onChange={userPasswordHandler}
                             type="password"
-                            placeholder="Enter new user's password!"
-                            required
+                            placeholder="Enter new password (if any)"
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Confirmation Password:</Form.Label>
+                    <Form.Group
+                        className="mb-3"
+                        controlId="formConfirmPassword"
+                    >
+                        <Form.Label>Confirm Password:</Form.Label>
                         <Form.Control
                             value={confirmuserpassword}
                             onChange={confirmUserPasswordHandler}
                             type="password"
-                            placeholder="Confirm your password!"
-                            required
+                            placeholder="Confirm password"
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicRole">
+                    <Form.Group className="mb-3" controlId="formUserRole">
                         <Form.Label>User Role:</Form.Label>
                         <Form.Control
                             value={userrole}
@@ -259,23 +284,14 @@ function AddUser() {
                             required
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicImage">
-                        <Form.Label>Profile Picture:</Form.Label>
-                        <Form.Control
-                            onChange={userImageHandler}
-                            type="file"
-                            placeholder="Select user's profile picture!"
-                            required
-                        />
-                    </Form.Group>
 
                     <Button
                         variant="primary"
                         type="button"
-                        onClick={addNewUserHandler}
+                        onClick={updateUserHandler}
                         className="mt-3"
                     >
-                        Add New User
+                        Update User
                     </Button>
                 </Form>
             </div>
@@ -283,4 +299,4 @@ function AddUser() {
     );
 }
 
-export default AddUser;
+export default EditUser;

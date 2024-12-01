@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AdminPanel from "../pages/adminPanel/AdminPanel";
 import AdminItem from "../pages/adminItem/AdminItem";
 import AddUser from "../pages/addUser/AddUser";
+import EditUser from "../pages/editUser/EditUser";
 export default function App() {
     return (
         <BrowserRouter>
@@ -27,6 +28,7 @@ export default function App() {
                 <Route path="/adminPanel" element={<AdminPanel />} />
                 <Route path="/adminItem" element={<AdminItem />} />
                 <Route path="/addUser" element={<AddUser />} />
+                <Route path="/editUser/:userId" element={<EditUser />} />
             </Routes>
         </BrowserRouter>
     );
