@@ -154,7 +154,10 @@ function AdminPanel() {
                                 <td>{user.user_role}</td>
                                 <td>
                                     <img
-                                        src={user.image || "/default-image.jpg"}
+                                        src={
+                                            (user.image =
+                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrhWXqJlJWNs2__nePzg_FcwuPfkaCEWQkA&s")
+                                        }
                                         alt={user.name}
                                         width={50}
                                         height={50}
