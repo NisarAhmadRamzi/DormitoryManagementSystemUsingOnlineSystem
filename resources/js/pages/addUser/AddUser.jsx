@@ -73,6 +73,7 @@ function AddUser() {
         formData.append("name", username);
         formData.append("email", useremail);
         formData.append("password", userpassword);
+        formData.append("profile_pic", userimage);
         formData.append("cpassword", confirmuserpassword); // Fixed field name to match the backend
         formData.append("role", userrole); // Ensure 'role' is the correct name expected by the backend
 
@@ -259,15 +260,15 @@ function AddUser() {
                             required
                         />
                     </Form.Group>
-                    {/* <Form.Group className="mb-3" controlId="formBasicImage">
+                    <Form.Group className="mb-3" controlId="formBasicImage">
                         <Form.Label>Profile Picture:</Form.Label>
                         <Form.Control
                             onChange={userImageHandler}
-                            type="file"
+                            type="text"
                             placeholder="Select user's profile picture!"
                             required
                         />
-                    </Form.Group> */}
+                    </Form.Group>
 
                     <Button
                         variant="primary"
