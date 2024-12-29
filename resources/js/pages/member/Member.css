@@ -1,142 +1,37 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.card {
+    border-radius: 10px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.wrapper {
-    width: 100%;
-    max-width: 400px;
-    background-color: #ffffff;
-    padding: 40px;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.card-body {
+    padding: 2rem; /* Add padding inside the card */
 }
 
-/* Title */
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-    font-weight: bold;
+.message a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-/* Input field container */
-.input-field {
-    position: relative;
-    margin-bottom: 20px;
+.message a:hover {
+    text-decoration: underline;
 }
 
-/* Input Styles */
-.input-field input {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fafafa;
+button:focus {
     outline: none;
-    transition: border 0.3s ease;
+    box-shadow: none;
 }
 
-/* Input focus effect */
-.input-field input:focus {
-    border-color: #2dbd34;
+input:focus,
+button:focus {
+    border-color: #007bff; /* Add a blue border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Light blue glow */
 }
 
-/* Label Styles */
-.input-field label {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #aaa;
-    pointer-events: none;
-    transition: all 0.3s ease;
+.box-shadow1 {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-/* Move label up when input is focused or filled */
-.input-field input:focus + label,
-.input-field input:not(:placeholder-shown) + label {
-    top: 10px;
-    font-size: 12px;
-    color: #333;
-}
-
-/* Forget password and remember me section */
-.forget {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #555;
-}
-
-.forget a {
-    color: #2dbd34;
-    text-decoration: none;
-}
-
-.forget a:hover {
-    text-decoration: underline;
-}
-
-.forget p {
-    margin: 0;
-}
-
-/* Log In Button */
-button {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #2dbd34;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Register Section */
-.register {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #555;
-}
-
-.register a {
-    color: #2dbd34;
-    text-decoration: none;
-}
-
-.register a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .wrapper {
-        padding: 30px;
-        width: 100%;
-        max-width: 350px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    .input-field input {
-        font-size: 14px;
-    }
-
-    button {
-        font-size: 14px;
-    }
+.box-shadow2 {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
