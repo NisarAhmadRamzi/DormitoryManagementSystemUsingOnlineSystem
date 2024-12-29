@@ -13,26 +13,19 @@ import AdminPanel from "../pages/adminPanel/AdminPanel";
 import AddUser from "../pages/addUser/AddUser";
 import EditUser from "../pages/editUser/EditUser";
 import MyNavbar from "./navbar/Navbar";
+import { allRoutes } from "../routes";
 export default function App() {
-    const routes = useRoutes([
-        { path: "/", element: <Home /> },
-        { path: "/admin", element: <Admin /> },
-        { path: "/about", element: <About /> },
-        { path: "/contact", element: <Contact /> },
-        { path: "/view-dorm", element: <View_Dorm /> },
-        { path: "/member", element: <Member /> },
-        { path: "/adminPanel", element: <AdminPanel /> },
-        { path: "/addUser", element: <AddUser /> },
-        { path: "/editUser/:userId", element: <EditUser /> },
-    ]);
+    const routes = useRoutes(allRoutes);
     return routes;
 }
 
 const container = document.getElementById("app");
 const root = ReactDOM.createRoot(container); // Note the lowercase `root` here (variable name shouldn't conflict with imported modules)
 root.render(
-    <BrowserRouter>
-        <MyNavbar />
-        <App />
-    </BrowserRouter>
+    <React.StrictMode>
+        <BrowserRouter>
+            <MyNavbar />
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
 );
