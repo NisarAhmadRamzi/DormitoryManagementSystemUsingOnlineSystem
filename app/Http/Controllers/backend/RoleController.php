@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    public function _construct()
+    {
+            $this->middleware('permission:role update', ['only'=>['edit', 'update']]);
+            $this->middleware('permission:role view', ['only'=>['index', 'show']]);
+            $this->middleware('permission:role create', ['only'=>['create', 'store']]);
+            $this->middleware('permission:role delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+            }
+
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +46,14 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
+
+  
+        // In your RoleController.php
+
+        
+
+        
+
     public function show(string $id)
     {
         $role = Role::findOrFail($id);

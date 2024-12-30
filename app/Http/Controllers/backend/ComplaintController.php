@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
+    public function _construct()
+    {
+            $this->middleware('permission:complaint update', ['only'=>['edit', 'update']]);
+            $this->middleware('permission:complaint view', ['only'=>['index', 'show']]);
+            $this->middleware('permission:complaint create', ['only'=>['create', 'store']]);
+            $this->middleware('permission:complaint delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+            }
+
     /**
      * Display a listing of the resource.
      */

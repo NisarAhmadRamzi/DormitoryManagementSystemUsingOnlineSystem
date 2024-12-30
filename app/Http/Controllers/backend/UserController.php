@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    public function _construct()
+{
+        $this->middleware('permission:user update', ['only'=>['edit', 'update']]);
+        $this->middleware('permission:user view', ['only'=>['index', 'show']]);
+        $this->middleware('permission:user create', ['only'=>['create', 'store']]);
+        $this->middleware('permission:user delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+        }
     /**
      * Display a listing of the resource.
      */

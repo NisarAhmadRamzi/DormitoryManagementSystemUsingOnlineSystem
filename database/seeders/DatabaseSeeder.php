@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             StudentSeeder::class,
             FeeSeeder::class,
+            PermissionSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();
