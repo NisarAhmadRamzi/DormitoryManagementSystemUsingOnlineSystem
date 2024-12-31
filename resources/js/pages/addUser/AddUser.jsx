@@ -264,7 +264,7 @@ function AddUser() {
                         <Form.Label>Profile Picture:</Form.Label>
                         <Form.Control
                             onChange={userImageHandler}
-                            type="text"
+                            type="file"
                             placeholder="Select user's profile picture!"
                             required
                         />
