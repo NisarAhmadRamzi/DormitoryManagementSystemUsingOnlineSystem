@@ -156,7 +156,7 @@ function AdminPanel() {
                                     <img
                                         src={
                                             (user.image =
-                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrhWXqJlJWNs2__nePzg_FcwuPfkaCEWQkA&s")
+                                                "https://img.freepik.com/premium-photo/picture-man-with-beard-blue-shirt-with-picture-man-with-beard_1057389-84775.jpg")
                                         }
                                         alt={user.name}
                                         width={50}
