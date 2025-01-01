@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class FeeController extends Controller
 {
-    public function _construct()
+    public function __construct()
 {
         $this->middleware('permission:fee update', ['only'=>['edit', 'update']]);
         $this->middleware('permission:fee view', ['only'=>['index', 'show']]);

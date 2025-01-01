@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
             $this->middleware('permission:role update', ['only'=>['edit', 'update']]);
             $this->middleware('permission:role view', ['only'=>['index', 'show']]);

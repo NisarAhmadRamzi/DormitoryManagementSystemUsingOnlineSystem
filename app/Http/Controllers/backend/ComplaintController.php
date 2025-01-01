@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
             $this->middleware('permission:complaint update', ['only'=>['edit', 'update']]);
             $this->middleware('permission:complaint view', ['only'=>['index', 'show']]);

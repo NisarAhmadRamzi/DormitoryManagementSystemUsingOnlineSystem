@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function _construct()
+    public function __construct()
 {
         $this->middleware('permission:room update', ['only'=>['edit', 'update']]);
         $this->middleware('permission:room view', ['only'=>['index', 'show']]);
