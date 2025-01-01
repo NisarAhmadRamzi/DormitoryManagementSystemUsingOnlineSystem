@@ -43,15 +43,16 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
-    Route::middleware('permission')->group(function () {
+   Route::middleware('auth:sanctum')->group(function(){ 
         Route::apiResource('roles', RoleController::class);
-        Route::apiResource('users', UserController::class);
+        Route::apiResource('users', UserController::class)->middleware('permission: user view');
         Route::apiResource('rooms', RoomController::class);
-        Route::apiResource('students', StudentController::class);
+        Route::apiResource('students', StudentController::class)->middleware('permission: student view');
         Route::apiResource('complaints', ComplaintController::class);
         Route::apiResource('fees', FeeController::class);
         Route::apiResource('permission', PermissionController::class);
-    });
+});
+
 
 
 

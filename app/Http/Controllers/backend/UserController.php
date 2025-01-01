@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function _construct()
+    public function __construct()
 {
         $this->middleware('permission:user update', ['only'=>['edit', 'update']]);
         $this->middleware('permission:user view', ['only'=>['index', 'show']]);

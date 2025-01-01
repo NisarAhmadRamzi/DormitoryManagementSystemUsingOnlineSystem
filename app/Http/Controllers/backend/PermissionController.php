@@ -3,18 +3,34 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
 
 class PermissionController extends Controller
 {
-    public function _construct()
-{
-        $this->middleware('permission:permission update', ['only'=>['edit', 'update']]);
-        $this->middleware('permission:permission view', ['only'=>['index', 'show']]);
-        $this->middleware('permission:permission create', ['only'=>['create', 'store']]);
-        $this->middleware('permission:permission delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+    
+        public function index()
+        {
+            // Retrieve all roles with their permissions
+            $roles = Role::with('permissions')->get();
+
+            // Format the response to return roles and their permissions details
+            return response()->json([
+                'roles' => $roles->map(function ($role) {
+                    return [
+                        'id' => $role->id,
+                        'name' => $role->name,
+                        'permissions' => $role->permissions->map(function ($permission) {
+                            return [
+                                'id' => $permission->id,
+                                'name' => $permission->name,
+                            ];
+                        }),
+                    ];
+                }),
+            ]);
         }
 
 

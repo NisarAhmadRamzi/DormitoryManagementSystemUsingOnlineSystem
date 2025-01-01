@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function _construct()
+    public function __construct()
 {
         $this->middleware('permission:student update', ['only'=>['edit', 'update']]);
         $this->middleware('permission:student view', ['only'=>['index', 'show']]);
