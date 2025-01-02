@@ -366,10 +366,10 @@
 // export default Home;
 
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link
 import Footer from "../../components/footer/Footer";
 import "./Home.css";
 import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -382,11 +382,8 @@ function Home() {
                             Modern Rooms. Exclusive Amenities. Prime Location.
                         </p>
                         <div className="cta-buttons">
-                            {/* Apply Now Button - using Link */}
                             <Link to="/member">
-                                <Button className="btn btn-primary">
-                                    Apply Now
-                                </Button>
+                                <Button variant="primary">Apply Now</Button>
                             </Link>
                             <Button href="#tour" className="btn btn-secondary">
                                 Book a Tour
@@ -551,7 +548,6 @@ function Home() {
                                         <li>High-speed Wi-Fi</li>
                                     </ul>
                                     <p className="price">$400 / month</p>
-                                    {/* Apply Now Button - using Link */}
                                     <Link to="/member">
                                         <Button variant="primary">
                                             Apply Now
@@ -587,7 +583,6 @@ function Home() {
                                     <p className="price">
                                         $300 / month per person
                                     </p>
-                                    {/* Apply Now Button - using Link */}
                                     <Link to="/member">
                                         <Button variant="primary">
                                             Apply Now
@@ -622,7 +617,6 @@ function Home() {
                                         <li>High-speed Wi-Fi</li>
                                     </ul>
                                     <p className="price">$600 / month</p>
-                                    {/* Apply Now Button - using Link */}
                                     <Link to="/member">
                                         <Button variant="primary">
                                             Apply Now
@@ -635,7 +629,7 @@ function Home() {
                 </Container>
             </section>
 
-            {/* Student Life and Events Section */}
+            {/* Student Life and Events */}
             <section id="student-life" className="student-life py-5">
                 <Container>
                     {/* Section Header */}
@@ -648,7 +642,95 @@ function Home() {
                             events, and enjoy a vibrant community.
                         </p>
                     </div>
-                    {/* Other content */}
+
+                    {/* Activities and Social Events */}
+                    <Row className="mb-4">
+                        <Col md={6}>
+                            <h3 className="text-center">
+                                Activities & Social Events
+                            </h3>
+                            <p>
+                                Our dormitory offers a range of fun and engaging
+                                activities, from movie nights to study groups.
+                                Whether you're looking for relaxation or
+                                productivity, there's always something
+                                happening.
+                            </p>
+                            <ul>
+                                <li>Weekly Movie Nights</li>
+                                <li>Study Groups and Academic Support</li>
+                                <li>Fitness and Yoga Sessions</li>
+                                <li>Game Nights & Social Gatherings</li>
+                            </ul>
+                        </Col>
+                        <Col md={6}>
+                            <h3 className="text-center">Community & Support</h3>
+                            <p>
+                                At our dorm, you're not just a resident; you're
+                                part of a thriving community. We offer support
+                                through Resident Assistants (RAs), peer
+                                mentoring, and a variety of social spaces like
+                                study lounges to foster collaboration and
+                                friendships.
+                            </p>
+                        </Col>
+                    </Row>
+
+                    {/* Gallery or Testimonials (Carousel) */}
+                    <div className="text-center mb-5">
+                        <h3>Gallery of Events</h3>
+                        <Carousel>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://media.istockphoto.com/id/945296406/photo/charming-bedroom-features-white-walls.webp?a=1&b=1&s=612x612&w=0&k=20&c=FYfkZUWE5cOebMFyk8ZSrdSdVyj87fnxiokqIobl9Gg="
+                                    alt="Movie Night"
+                                />
+                                <Carousel.Caption>
+                                    <h5>Movie Night with Friends</h5>
+                                    <p>
+                                        Enjoying a cozy movie night in the
+                                        lounge with friends.
+                                    </p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://media.istockphoto.com/id/155151764/photo/empty-frame-on-wall.webp?a=1&b=1&s=612x612&w=0&k=20&c=f2xXplOj26Ga906J8MlVBmv3eyKzvJjP1Cx4gtRLT1s="
+                                    alt="Study Group"
+                                />
+                                <Carousel.Caption>
+                                    <h5>Study Group Session</h5>
+                                    <p>
+                                        Collaborating in study groups to ace our
+                                        exams together.
+                                    </p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://media.istockphoto.com/id/487046541/photo/beautiful-hallway-in-hotel.webp?a=1&b=1&s=612x612&w=0&k=20&c=GJoy-eOaq_EoDn1e_hHsUbra9RHjBYdRYSR9NEvCUiU="
+                                    alt="Game Night"
+                                />
+                                <Carousel.Caption>
+                                    <h5>Game Night</h5>
+                                    <p>
+                                        A fun-filled night of games and laughter
+                                        with fellow students.
+                                    </p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel>
+                    </div>
+
+                    {/* Call to Action Button */}
+                    <div className="text-center">
+                        <Button variant="primary" href="/member">
+                            Join Our Community
+                        </Button>
+                    </div>
                 </Container>
             </section>
 
