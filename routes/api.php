@@ -3,10 +3,12 @@
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\ComplaintController;
 use App\Http\Controllers\backend\FeeController;
+use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\RoomController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\UserController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +29,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('roles',RoleController::class);
-Route::apiResource('users',UserController::class);
+
 
 // Route::post('login',[AuthController::class, 'login']);
 
@@ -42,9 +43,19 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
-Route::apiResource('rooms', RoomController::class);
-Route::apiResource('students',StudentController::class);
-Route::apiResource('complaints',ComplaintController::class);
-Route::apiResource('fees',FeeController::class);
+
+Route::apiResource('permission', PermissionController::class);
+   Route::middleware('auth:sanctum')->group(function(){ 
+
+        Route::apiResource('roles', RoleController::class);
+        Route::apiResource('users', UserController::class);
+        Route::apiResource('rooms', RoomController::class);
+        Route::apiResource('students', StudentController::class);
+        Route::apiResource('complaints', ComplaintController::class);
+        Route::apiResource('fees', FeeController::class);
+});
+
+
+
 
 

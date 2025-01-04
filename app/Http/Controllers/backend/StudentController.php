@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+{
+        $this->middleware('permission:student update', ['only'=>['edit', 'update']]);
+        $this->middleware('permission:student view', ['only'=>['index', 'show']]);
+        $this->middleware('permission:student create', ['only'=>['create', 'store']]);
+        $this->middleware('permission: student delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+        }
     /**
      * Display a listing of the resource.
      */

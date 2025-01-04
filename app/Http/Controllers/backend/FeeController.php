@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class FeeController extends Controller
 {
+    public function __construct()
+{
+        $this->middleware('permission:fee update', ['only'=>['edit', 'update']]);
+        $this->middleware('permission:fee view', ['only'=>['index', 'show']]);
+        $this->middleware('permission:fee create', ['only'=>['create', 'store']]);
+        $this->middleware('permission:fee delete', ['only'=>['destroy', 'trash', 'delete', 'restore']]);
+        }
     /**
      * Display a listing of the resource.
      */
