@@ -30,10 +30,13 @@ class AuthController extends Controller
 
         // Generate token
         $token = $user->createToken($user->name)->plainTextToken;
-
+        $role = $user->role;
         return response()->json([
             'message' => 'Admin logged in successfully',
-            'user' => $user,
+            'userName' => $user->name,
+            'email' => $user->email,
+            'role' => $user->role->name,
+            'permissions' => $user->role->permissions->pluck('name'),
             'token' => $token
         ]);
     }
